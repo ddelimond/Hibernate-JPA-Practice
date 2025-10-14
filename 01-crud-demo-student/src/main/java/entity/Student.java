@@ -23,7 +23,6 @@ public class Student {
     public Student(){
 
     }
-
     public Student(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
