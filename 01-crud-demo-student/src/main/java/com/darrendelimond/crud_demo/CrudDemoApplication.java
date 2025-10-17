@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 @SpringBootApplication
 public class CrudDemoApplication {
 
@@ -21,20 +23,51 @@ public class CrudDemoApplication {
 
 
 		return runner -> {
-			createStudent(studentDAO);
+//			createStudent(studentDAO);
+			readStudent(studentDAO, 1);
+			queryForStudents(studentDAO);
+
 		};
 	}
 
+
+	private void queryForStudents(StudentDAO studentDAO){
+		List<Student> theStudents = studentDAO.findAll();
+
+		System.out.println("Retrieving all Students ... ");
+
+		for(Student student:theStudents){
+			System.out.println(student.toString());
+		}
+	}
+
 	private void createStudent(StudentDAO studentDAO) {
-		System.out.println("Creating new student object ...");
-		Student student = new Student("Gabriel", "Delimond", "gabe-delimond@gmail.com");
+		System.out.println("Creating new student objects ...");
+		Student student1 = new Student("Gabriel", "Delimond", "gabe-delimond@gmail.com");
+		Student student2 = new Student("Darren", "Delimond", "darren-delimond@gmail.com");
+		Student student3 = new Student("Brenda", "Kayira", "brenda-kayira@gmail.com");
+		Student student4 = new Student("Jean", "Delimond", "jean-delimond@gmail.com");
+		Student student5 = new Student("Annet", "Kayira", "annet-kayira@gmail.com");
+		studentDAO.save(student1);
+		studentDAO.save(student2);
+		studentDAO.save(student3);
+		studentDAO.save(student4);
+		studentDAO.save(student5);
 
-		studentDAO.save(student);
-		System.out.println("Saving Student to Database ...");
+		System.out.println("Saving Students to Database ...");
 
-		System.out.println("Saved student Generated id  "+ student.getId());
+		System.out.println("Saved student Generated id  "+ student1.getId());
+	}
 
+	public Student readStudent(StudentDAO studentDAO, int id){
 
+		System.out.println("Finding Student with the id of : "+ id);
+
+		Student returnedStudent = studentDAO.findById(id);
+
+		System.out.println("Retuned Student is : " + returnedStudent.toString());
+
+		return returnedStudent;
 	}
 }
 
