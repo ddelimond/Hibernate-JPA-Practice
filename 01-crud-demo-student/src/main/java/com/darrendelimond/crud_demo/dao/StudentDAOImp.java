@@ -1,7 +1,6 @@
 package com.darrendelimond.crud_demo.dao;
 
-import entity.Student;
-import jakarta.persistence.Entity;
+import com.darrendelimond.crud_demo.entity.Student;
 import jakarta.persistence.EntityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

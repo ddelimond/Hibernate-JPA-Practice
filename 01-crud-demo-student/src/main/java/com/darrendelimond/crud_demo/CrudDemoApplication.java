@@ -1,5 +1,7 @@
 package com.darrendelimond.crud_demo;
 
+import com.darrendelimond.crud_demo.dao.StudentDAO;
+import com.darrendelimond.crud_demo.entity.Student;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,12 +17,24 @@ public class CrudDemoApplication {
 
 
 	@Bean
-	public CommandLineRunner commandLineRunner (String[] args){
+	public CommandLineRunner commandLineRunner (StudentDAO studentDAO){
 
 
 		return runner -> {
-			System.out.println("Hello world");
+			createStudent(studentDAO);
 		};
+	}
+
+	private void createStudent(StudentDAO studentDAO) {
+		System.out.println("Creating new student object ...");
+		Student student = new Student("Gabriel", "Delimond", "gabe-delimond@gmail.com");
+
+		studentDAO.save(student);
+		System.out.println("Saving Student to Database ...");
+
+		System.out.println("Saved student Generated id  "+ student.getId());
+
+
 	}
 }
 
