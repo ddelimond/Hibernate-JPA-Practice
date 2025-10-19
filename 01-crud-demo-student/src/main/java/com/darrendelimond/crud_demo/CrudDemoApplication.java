@@ -24,22 +24,15 @@ public class CrudDemoApplication {
 
 		return runner -> {
 //			createStudent(studentDAO);
-			readStudent(studentDAO, 1);
-			queryForStudents(studentDAO);
+//			readStudent(studentDAO, 1);
+//			queryForStudents(studentDAO);
+			queryForStudentsByLastName(studentDAO);
 
 		};
 	}
 
 
-	private void queryForStudents(StudentDAO studentDAO){
-		List<Student> theStudents = studentDAO.findAll();
 
-		System.out.println("Retrieving all Students ... ");
-
-		for(Student student:theStudents){
-			System.out.println(student.toString());
-		}
-	}
 
 	private void createStudent(StudentDAO studentDAO) {
 		System.out.println("Creating new student objects ...");
@@ -68,6 +61,27 @@ public class CrudDemoApplication {
 		System.out.println("Retuned Student is : " + returnedStudent.toString());
 
 		return returnedStudent;
+	}
+
+
+	private void queryForStudents(StudentDAO studentDAO){
+		List<Student> theStudents = studentDAO.findAll();
+
+		System.out.println("Retrieving all Students ... ");
+
+		for(Student student:theStudents){
+			System.out.println(student.toString());
+		}
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO){
+		List<Student> theStudents = studentDAO.findByLastName("Kayira");
+
+		System.out.println("Retrieving all Students with  provided last name... ");
+
+		for(Student student:theStudents){
+			System.out.println(student.toString());
+		}
 	}
 }
 
