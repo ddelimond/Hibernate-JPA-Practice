@@ -26,7 +26,8 @@ public class CrudDemoApplication {
 //			createStudent(studentDAO);
 //			readStudent(studentDAO, 1);
 //			queryForStudents(studentDAO);
-			queryForStudentsByLastName(studentDAO);
+//			queryForStudentsByLastName(studentDAO);
+			updateStudent(studentDAO);
 
 		};
 	}
@@ -82,6 +83,18 @@ public class CrudDemoApplication {
 		for(Student student:theStudents){
 			System.out.println(student.toString());
 		}
+	}
+
+	private void updateStudent(StudentDAO studentDAO){
+		System.out.println("Retrieving specified user ...");
+		Student querystudent = studentDAO.findById(1);
+
+		querystudent.setFirstName("Scrappy");
+
+		System.out.println("Updating First Name");
+		studentDAO.update(querystudent);
+
+		System.out.println("Updated Student : " + querystudent);
 	}
 }
 
