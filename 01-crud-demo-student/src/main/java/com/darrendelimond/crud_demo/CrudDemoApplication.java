@@ -89,7 +89,7 @@ public class CrudDemoApplication {
 		System.out.println("Retrieving specified user ...");
 		Student querystudent = studentDAO.findById(1);
 
-		querystudent.setFirstName("Scrappy");
+		querystudent.setFirstName("Gabriel");
 
 		System.out.println("Updating First Name");
 		studentDAO.update(querystudent);
