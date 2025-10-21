@@ -12,6 +12,8 @@ public interface StudentDAO {
 
     public void update(Student student);
 
+    public void delete(int id);
+
 
     public List<Student> findAll();
 
